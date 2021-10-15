@@ -12,7 +12,7 @@ app.use(
 	cors({
 		origin: [
 			'https://yinnyc.github.io/portfolio/',
-			'ttps://yinnyc.github.io',
+			'https://yinnyc.github.io',
 			'*',
 		],
 	})
