@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 
 const router = express.Router();
 
@@ -10,10 +12,21 @@ const indexRouter = require('./routes/index');
 // Set App Variable
 const app = express();
 
+const corsOptions = {
+	origin: [
+		'http://localhost',
+		'http://localhost:3000',
+		'http://localhost:8100',
+		'https://yinnyc.github.io/portfolio/',
+	],
+	credentials: true,
+};
+
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: '*' }));
+app.use(helmet());
+app.use(cors(corsOptions));
 
 // Routes
 app.use('/', indexRouter);
