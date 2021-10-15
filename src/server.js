@@ -10,7 +10,11 @@ const app = express();
 // Add cors
 app.use(
 	cors({
-		origin: ['https://yinnyc.github.io/portfolio/', '*'],
+		origin: [
+			'https://yinnyc.github.io/portfolio/',
+			'ttps://yinnyc.github.io',
+			'*',
+		],
 	})
 );
 app.use(express.json());
