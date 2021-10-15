@@ -14,12 +14,12 @@ const app = express();
 
 const corsOptions = {
 	origin: [
+		'*',
 		'http://localhost',
 		'http://localhost:3000',
 		'http://localhost:8100',
 		'https://yinnyc.github.io/portfolio/',
 	],
-	credentials: true,
 };
 
 // Middleware
