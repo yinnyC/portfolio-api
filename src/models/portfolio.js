@@ -9,7 +9,6 @@ const portfolioModel = {
 			const { results } = await notion.databases.query({
 				database_id: projectDatabaseId,
 			});
-			console.log(results);
 			const res = results.map((page) => {
 				return {
 					Name: page.properties.Name.title[0].plain_text,
@@ -25,12 +24,29 @@ const portfolioModel = {
 			console.error(error);
 		}
 	},
+	getProjectTags: async () => {
+		try {
+			const { results } = await notion.databases.query({
+				database_id: projectDatabaseId,
+			});
+			const uniqueTags = new Set();
+			results.map((page) => {
+				const tags = page.properties.Tags.multi_select.map((tag) => tag.name);
+				tags.forEach((tag) => {
+					uniqueTags.add(tag);
+				});
+			});
+
+			return Array.from(uniqueTags);
+		} catch (error) {
+			console.log(error);
+		}
+	},
 	getPublications: async () => {
 		try {
 			const { results } = await notion.databases.query({
 				database_id: publicationsDatabaseId,
 			});
-			console.log(results);
 			const res = results.map((page) => {
 				return {
 					Name: page.properties.Name.title[0].plain_text,
