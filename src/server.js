@@ -23,10 +23,10 @@ const corsOptions = {
 };
 
 // Middleware
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
-app.use(cors(corsOptions));
 
 // Routes
 app.use('/', indexRouter);
